@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
-import express , {Express , Request , Response}from "express" 
-import userRouter from "./routes/user.route";
+import express , {Express} from "express" 
 import errorMiddleware from "./middlewares/error.middleware";
 import notFoundMiddleware from "./middlewares/notFound.middleware";
+import func from "./file";
 
 
 dotenv.config()
@@ -13,11 +13,7 @@ const app : Express = express();
 
 app.use(express.json())
 
-app.get("/",(req : Request ,res : Response) =>{
-    res.send("Hello from ts express");
-})
-
-app.use(userRouter)
+func()
 
 
 // glopal middleware
