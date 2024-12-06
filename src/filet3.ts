@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { NextFunction, Router } from "express";
 import { Request, Response } from "express";
 import ApiError from "./errors/api.error";
 import verifiedEmailToUser from "./file";
@@ -25,20 +25,24 @@ const users: User[] = [
 
 const generateId = () => Date.now()
 
-router.post('/register', async(req: Request, res: Response) => {
-    const newUser = req.body
-    const oldUser = users.find((user) => user.email == newUser.email)
-    if(oldUser)throw new ApiError('this user is already exist', 409)
-    newUser.id = generateId()
-    newUser.isVerfied = false
-    users.push(newUser)
-    const verifiedEmailResponse = await verifiedEmailToUser(newUser)
-    res.status(200).json({
-        message: 'A confirmation email sent to the user email',
-        recieverEmail: verifiedEmailResponse.accepted[0],
-        response: verifiedEmailResponse.response,
-        senderEmail: verifiedEmailResponse.envelope.from
-    })
+router.post('/register', async(req: Request, res: Response, next: NextFunction) => {
+    try{
+        const newUser = req.body
+        const oldUser = users.find((user) => user.email == newUser.email)
+        if(oldUser)throw new ApiError('this user is already exist', 409)
+        newUser.id = generateId()
+        newUser.isVerfied = false
+        users.push(newUser)
+        const verifiedEmailResponse = await verifiedEmailToUser(newUser)
+        res.status(200).json({
+            message: 'A confirmation email sent to the user email',
+            recieverEmail: verifiedEmailResponse.accepted[0],
+            response: verifiedEmailResponse.response,
+            senderEmail: verifiedEmailResponse.envelope.from
+        })
+    }catch(err: any){
+        next(err)
+    }
 })
 
 router.get('/verify/:id', (req: Request, res: Response) => {

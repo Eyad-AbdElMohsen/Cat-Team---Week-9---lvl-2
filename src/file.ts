@@ -3,8 +3,6 @@ dotenv.config()
 import nodemailer from 'nodemailer'
 import { User } from './filet3'
 import { promisify } from 'util';
-import { SentMessageInfo } from 'nodemailer';
-
 interface Envolope{
         from: string; 
         to: string[];  
