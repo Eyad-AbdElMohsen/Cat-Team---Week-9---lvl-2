@@ -2,7 +2,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 import nodemailer from 'nodemailer'
 
-const func = () => {
+export const func = () => {
     const user = {
         email: ''//'eyadmohsen2324@gmail.com'
     }
@@ -29,5 +29,3 @@ const func = () => {
         }
     });
 }
-
-export default func

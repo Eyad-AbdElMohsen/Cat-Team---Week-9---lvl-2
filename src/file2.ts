@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { performance } from 'perf_hooks';
 
-const calcTimeOfRequestInSec = async(url: string) => {
+export const calcTimeOfRequestInSec = async(url: string) => {
     let timeInSeconds = performance.now();
     await axios.get(url)
     timeInSeconds =(performance.now() - timeInSeconds) / 1000;
@@ -9,4 +9,3 @@ const calcTimeOfRequestInSec = async(url: string) => {
     return
 }
 
-export default calcTimeOfRequestInSec

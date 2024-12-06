@@ -7,13 +7,12 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const express_1 = __importDefault(require("express"));
 const error_middleware_1 = __importDefault(require("./middlewares/error.middleware"));
 const notFound_middleware_1 = __importDefault(require("./middlewares/notFound.middleware"));
-const file2_1 = __importDefault(require("./file2"));
 dotenv_1.default.config();
 const port = process.env.port || 8000;
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-//func()
-(0, file2_1.default)('https://docs.google.com/forms/d/e/1FAIpQLSe8zLC2OETXnjB6qrwK9MmQpJkPl1oiQEk7PNGvjwalv3Oj_g/formResponse');
+//file.func()
+//file2.calcTimeOfRequestInSec('https://docs.google.com/forms/d/e/1FAIpQLSe8zLC2OETXnjB6qrwK9MmQpJkPl1oiQEk7PNGvjwalv3Oj_g/formResponse')
 // glopal middleware
 app.all('*', notFound_middleware_1.default);
 //err handler
