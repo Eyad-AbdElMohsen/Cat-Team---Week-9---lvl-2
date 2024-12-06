@@ -3,7 +3,6 @@ import express , {Express} from "express"
 import errorMiddleware from "./middlewares/error.middleware";
 import notFoundMiddleware from "./middlewares/notFound.middleware";
 import * as file from "./file";
-import * as file2 from "./file2";
 import router from "./filet3";
 
 
