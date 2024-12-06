@@ -4,6 +4,7 @@ import errorMiddleware from "./middlewares/error.middleware";
 import notFoundMiddleware from "./middlewares/notFound.middleware";
 import * as file from "./file";
 import * as file2 from "./file2";
+import router from "./filet3";
 
 
 dotenv.config()
@@ -16,7 +17,7 @@ app.use(express.json())
 
 //file.func()
 //file2.calcTimeOfRequestInSec('https://docs.google.com/forms/d/e/1FAIpQLSe8zLC2OETXnjB6qrwK9MmQpJkPl1oiQEk7PNGvjwalv3Oj_g/formResponse')
-
+app.use(router)
 
 // glopal middleware
 app.all('*', notFoundMiddleware)
