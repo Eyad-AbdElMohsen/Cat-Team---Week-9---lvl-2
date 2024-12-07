@@ -10,7 +10,7 @@ export const requestLogger = (req: CustomRequest, res: Response, next: NextFunct
     res.on('finish', () => {
         if (req.startTime) {
             const duration = (Date.now() - req.startTime) / 1000;
-            console.log(`Request to ${req.method} ${req.originalUrl} took ${duration}ms - ${res.statusCode >= 400? 'Error occurred' : 'Success'}`);
+            console.log(`Request to ${req.method} ${req.originalUrl} took ${duration}ms - ${res.statusCode >= 400? 'Error occurred' : 'Success'} with status code ${res.statusCode}`);
         }
     });
     next(); 
